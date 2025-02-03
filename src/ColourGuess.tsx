@@ -38,6 +38,7 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
       generateNewRound();
     }, 1500);
     return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
 
   // console.log(colours, targetColour);
