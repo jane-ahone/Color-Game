@@ -29,7 +29,10 @@ const DisplayColour = ({
     <div
       className="colour-box"
       data-testid="colorOption"
-      style={{ backgroundColor: colourCode }}
+      style={{
+        backgroundColor: colourCode,
+        boxShadow: "rgb(17 1 1 / 25%) 4px 2px 3px",
+      }}
       onClick={handleGuess}
     ></div>
   );

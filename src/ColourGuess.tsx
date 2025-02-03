@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./ColourGuess.css";
-import { colourGenerate } from "./utils/colourGenerator";
 import DisplayColour from "./DisplayColour";
 import GameSummaryModal from "./GameSummaryModal";
 
@@ -9,32 +8,30 @@ interface Props {
   setCount: React.Dispatch<React.SetStateAction<number>>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  targetColour: string;
+  colours: string[];
+  handleRestart: () => void;
+  generateNewRound: () => void;
 }
 
-const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
-  const [colours, setColours] = useState<string[]>([]);
+const ColourGuess = ({
+  round,
+  setCount,
+  score,
+  setScore,
+  targetColour,
+  colours,
+  generateNewRound,
+  handleRestart,
+}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [targetColour, setTargetColour] = useState<string>("");
   const [answerValue, setAnswerValue] = useState<boolean | undefined>(
     undefined
   );
   const roundLimit = 5;
 
-  const generateNewRound = () => {
-    const newColors = Array.from({ length: 6 }, () => colourGenerate());
-    const randomIndex = Math.floor(Math.random() * 5);
-    setTargetColour(newColors[randomIndex]);
-    setColours(newColors);
-  };
-
   const handleGameEnd = () => {
     setIsModalOpen(true);
-  };
-
-  const handleRestart = () => {
-    setScore(0);
-    setCount(0);
-    generateNewRound();
   };
 
   useEffect(() => {
