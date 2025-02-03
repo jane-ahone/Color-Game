@@ -3,16 +3,31 @@ import "./ColourGuess.css";
 import { colourGenerate } from "./utils/colourGenerator";
 import DisplayColour from "./DisplayColour";
 
-const ColourGuess = () => {
+interface Props {
+  round: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
   const [colours, setColours] = useState<string[]>([]);
   const [targetColour, setTargetColour] = useState<string>("");
-  const [score, setScore] = useState<number>(0);
+
+  const generateNewRound = () => {
+    const newColors = Array.from({ length: 6 }, () => colourGenerate());
+    const randomIndex = Math.floor(Math.random() * 5);
+    setTargetColour(newColors[randomIndex]);
+    setColours(newColors);
+  };
 
   useEffect(() => {
-    setTargetColour(colourGenerate());
-    const newColors = Array.from({ length: 5 }, () => colourGenerate());
-    setColours(newColors);
-  }, []);
+    if (round == 5) {
+      setCount(0);
+      setScore(0);
+    }
+    generateNewRound();
+  }, [round]);
 
   console.log(colours, targetColour);
   return (
@@ -21,7 +36,7 @@ const ColourGuess = () => {
       <div className="gameDetails">
         <div className="roundDetails">
           <p className="title">Round</p>
-          <p className="value">1/20</p>
+          <p className="value">{round}/5</p>
         </div>
         <div className="scoreDetails">
           <p className="title">Score</p>
@@ -31,18 +46,17 @@ const ColourGuess = () => {
         </div>
       </div>
       <div>
-        <div>
-          <p
-            className="instructions"
-            style={{ backgroundColor: `${targetColour}` }}
-          >
-            What colour is this?
-          </p>
+        <div style={{ backgroundColor: `${targetColour}` }}>
+          <p className="instructions">What colour is this?</p>
         </div>
         <div className="colourBoxDiv">
-          <DisplayColour colourCode={targetColour}></DisplayColour>
-          {Array.from({ length: 5 }, (_, i) => (
-            <DisplayColour colourCode={colours[i]}></DisplayColour>
+          {Array.from({ length: 6 }, (_, i) => (
+            <DisplayColour
+              colourCode={colours[i]}
+              target={targetColour}
+              setCount={setCount}
+              setScore={setScore}
+            ></DisplayColour>
           ))}
         </div>
       </div>

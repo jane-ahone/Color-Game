@@ -31,7 +31,7 @@
 .colour-box {
   width: 100px;
   height: 100px;
-  border: 0.5px solid rgba(128, 128, 128, 0.627);
+  /* border: 0.5px solid rgba(128, 128, 128, 0.627); */
   border-radius: 50%;
 }
 .colourBoxDiv {
@@ -40,4 +40,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   row-gap: 2rem;
+}
+.colour-box :hover {
+  background-color: rgba(0, 0, 0, 0.695);
 }

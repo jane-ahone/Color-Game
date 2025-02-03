@@ -4,25 +4,28 @@ import ColourGuess from "./ColourGuess";
 
 function App() {
   const [count, setCount] = useState<number>(0);
-
-  const handleClick = () => {
-    setCount((prev) => 1 + prev);
-  };
-  console.log(count);
+  const [score, setScore] = useState<number>(0);
 
   return (
     <>
       <header>
         <p className="logo">KOLOR </p>
-        <button data-testid="newGameButton" onClick={() => setCount(0)}>
+        <button
+          data-testid="newGameButton"
+          onClick={() => {
+            setCount(0);
+          }}
+        >
           New Game
         </button>
       </header>
       <main>
-        <ColourGuess></ColourGuess>
-        <button className="next-btn" onClick={handleClick}>
-          Next
-        </button>
+        <ColourGuess
+          round={count}
+          score={score}
+          setScore={setScore}
+          setCount={setCount}
+        ></ColourGuess>
       </main>
     </>
   );
