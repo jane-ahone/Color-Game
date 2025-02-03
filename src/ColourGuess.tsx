@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./ColourGuess.css";
 import { colourGenerate } from "./utils/colourGenerator";
 import DisplayColour from "./DisplayColour";
+import GameSummaryModal from "./GameSummaryModal";
 
 interface Props {
   round: number;
@@ -12,14 +13,12 @@ interface Props {
 
 const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
   const [colours, setColours] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [targetColour, setTargetColour] = useState<string>("");
   const [answerValue, setAnswerValue] = useState<boolean | undefined>(
     undefined
   );
-
-  console.log("Answer Value", answerValue);
-
-  console.log(answerValue ? "Correct" : "Wrong");
+  const roundLimit = 5;
 
   const generateNewRound = () => {
     const newColors = Array.from({ length: 6 }, () => colourGenerate());
@@ -28,11 +27,21 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
     setColours(newColors);
   };
 
+  const handleGameEnd = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleRestart = () => {
+    setScore(0);
+    setCount(0);
+    generateNewRound();
+  };
+
   useEffect(() => {
-    if (round == 5) {
-      setCount(0);
-      setScore(0);
+    if (round == roundLimit) {
+      handleGameEnd();
     }
+
     const timeoutId = setTimeout(() => {
       setAnswerValue(undefined);
       generateNewRound();
@@ -41,7 +50,7 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
 
-  // console.log(colours, targetColour);
+  console.log("hint", colours, targetColour);
   return (
     <>
       {" "}
@@ -82,6 +91,13 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
           ))}
         </div>
       </div>
+      <GameSummaryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onRestart={handleRestart}
+        score={score}
+        totalRounds={roundLimit}
+      />
     </>
   );
 };
