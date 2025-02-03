@@ -60,3 +60,9 @@
 .colour-box :hover {
   background-color: rgba(0, 0, 0, 0.695);
 }
+
+@media (max-width: 320px) {
+  .colourBoxDiv {
+    grid-template-columns: 1fr 1fr;
+  }
+}

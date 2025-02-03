@@ -60,10 +60,13 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
       <div>
         <div
           className="target-div"
+          data-testid="colorBox"
           style={{ backgroundColor: `${targetColour}` }}
         >
-          <p className="instructions">What colour is this?</p>
-          <p className="answer correct">
+          <p className="instructions" data-testid="gameInstructions">
+            What colour is this?
+          </p>
+          <p className="answer correct" data-testid="gameStatus">
             {answerValue == undefined ? "" : answerValue ? "Correct" : "Wrong"}
           </p>
         </div>
