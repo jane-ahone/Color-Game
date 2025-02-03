@@ -32,8 +32,8 @@ KOLOR is an engaging web-based game that tests and improves your color perceptio
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/kolor-game.git
-cd kolor-game
+git clone https://github.com/jane-ahone/Color-Game.git
+
 ```
 
 2. Install dependencies
