@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
+# KOLOR 🎨 - Color Perception Challenge Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+KOLOR is an engaging web-based game that tests and improves your color perception skills. Players are challenged to identify the correct color from a set of randomly generated RGB colors, making it both a fun and educational experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Game Screenshot](./screenshot.png)
 
-## Expanding the ESLint configuration
+## 🌟 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Random Color Generation**: Each round generates unique RGB colors
+- **Score Tracking**: Keep track of your correct guesses
+- **Multiple Rounds**: Play through 5 rounds per game
+- **Performance Tiers**: Get rated based on your color recognition accuracy
+- **Responsive Design**: Playable on desktop and mobile devices
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠 Tech Stack
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Frontend**: React
+- **Language**: TypeScript
+- **Styling**: CSS
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/yourusername/kolor-game.git
+cd kolor-game
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+4. Open `http://localhost:5173` in your browser
+
+## 🎮 How to Play
+
+1. A target color will be displayed
+2. Choose the correct color from the 6 options
+3. Earn points for correct guesses
+4. Complete 5 rounds to see your performance summary
+
+## 🌈 Color Generation Algorithm
+
+The game uses a simple RGB color generation algorithm:
+
+- Generates random values between 0-255 for Red, Green, and Blue
+- Creates unique color combinations
+
+## 🏆 Performance Tiers
+
+- **Color Master**: 80%+ accuracy
+- **Color Pro**: 60-80% accuracy
+- **Color Learner**: 40-60% accuracy
+- **Color Novice**: < 40% accuracy
