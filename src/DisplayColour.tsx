@@ -1,6 +1,8 @@
 import "./ColourGuess.css";
 
 interface Props {
+  round: number;
+  roundLimit: number;
   colourCode: string;
   target: string;
   setAnswerValue: React.Dispatch<React.SetStateAction<boolean | undefined>>;
@@ -11,19 +13,25 @@ interface Props {
 const DisplayColour = ({
   colourCode,
   target,
+  round,
+  roundLimit,
   setScore,
   setCount,
   setAnswerValue,
 }: Props) => {
   const handleGuess = () => {
-    if (colourCode == target) {
-      setAnswerValue(true);
-      setScore((prev) => prev + 1);
-    } else {
-      setAnswerValue(false);
+    if (round < roundLimit) {
+      if (colourCode == target) {
+        setAnswerValue(true);
+        setScore((prev) => prev + 1);
+      } else {
+        setAnswerValue(false);
+      }
+      setCount((prev) => prev + 1);
     }
-    setCount((prev) => prev + 1);
   };
+  console.log(round, roundLimit);
+  console.log(round <= roundLimit);
 
   return (
     <div

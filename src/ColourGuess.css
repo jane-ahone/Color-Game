@@ -35,6 +35,7 @@
 }
 .target-div {
   padding: 6rem;
+  transition: all 0.3s ease;
 }
 .answer {
   font-size: 1.5rem;

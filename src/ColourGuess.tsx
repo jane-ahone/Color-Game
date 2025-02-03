@@ -79,6 +79,8 @@ const ColourGuess = ({
         <div className="colourBoxDiv">
           {Array.from({ length: 6 }, (_, i) => (
             <DisplayColour
+              round={round}
+              roundLimit={roundLimit}
               colourCode={colours[i]}
               target={targetColour}
               setAnswerValue={setAnswerValue}
