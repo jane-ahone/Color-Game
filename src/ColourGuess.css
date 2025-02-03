@@ -24,7 +24,6 @@
 .instructions {
   text-align: center;
   color: white;
-  padding: 6rem;
   font-weight: 600;
   font-size: 2rem;
 }
@@ -33,6 +32,23 @@
   height: 100px;
   /* border: 0.5px solid rgba(128, 128, 128, 0.627); */
   border-radius: 50%;
+}
+.target-div {
+  padding: 6rem;
+}
+.answer {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.correct {
+  color: black;
 }
 .colourBoxDiv {
   margin-top: 2rem;

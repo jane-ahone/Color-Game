@@ -14,6 +14,7 @@ function App() {
           data-testid="newGameButton"
           onClick={() => {
             setCount(0);
+            setScore(0);
           }}
         >
           New Game

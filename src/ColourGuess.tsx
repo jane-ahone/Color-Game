@@ -13,6 +13,13 @@ interface Props {
 const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
   const [colours, setColours] = useState<string[]>([]);
   const [targetColour, setTargetColour] = useState<string>("");
+  const [answerValue, setAnswerValue] = useState<boolean | undefined>(
+    undefined
+  );
+
+  console.log("Answer Value", answerValue);
+
+  console.log(answerValue ? "Correct" : "Wrong");
 
   const generateNewRound = () => {
     const newColors = Array.from({ length: 6 }, () => colourGenerate());
@@ -26,10 +33,14 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
       setCount(0);
       setScore(0);
     }
-    generateNewRound();
+    const timeoutId = setTimeout(() => {
+      setAnswerValue(undefined);
+      generateNewRound();
+    }, 1500);
+    return () => clearTimeout(timeoutId);
   }, [round]);
 
-  console.log(colours, targetColour);
+  // console.log(colours, targetColour);
   return (
     <>
       {" "}
@@ -46,14 +57,21 @@ const ColourGuess = ({ round, setCount, score, setScore }: Props) => {
         </div>
       </div>
       <div>
-        <div style={{ backgroundColor: `${targetColour}` }}>
+        <div
+          className="target-div"
+          style={{ backgroundColor: `${targetColour}` }}
+        >
           <p className="instructions">What colour is this?</p>
+          <p className="answer correct">
+            {answerValue == undefined ? "" : answerValue ? "Correct" : "Wrong"}
+          </p>
         </div>
         <div className="colourBoxDiv">
           {Array.from({ length: 6 }, (_, i) => (
             <DisplayColour
               colourCode={colours[i]}
               target={targetColour}
+              setAnswerValue={setAnswerValue}
               setCount={setCount}
               setScore={setScore}
             ></DisplayColour>
