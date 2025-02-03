@@ -47,7 +47,6 @@ const ColourGuess = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
 
-  console.log("hint", colours, targetColour);
   return (
     <>
       {" "}
@@ -67,6 +66,13 @@ const ColourGuess = ({
         <div
           className="target-div"
           data-testid="colorBox"
+          data-result={
+            answerValue === undefined
+              ? ""
+              : answerValue
+              ? "correct"
+              : "incorrect"
+          }
           style={{ backgroundColor: `${targetColour}` }}
         >
           <p className="instructions" data-testid="gameInstructions">

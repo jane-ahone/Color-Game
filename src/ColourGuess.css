@@ -28,29 +28,43 @@
   font-size: 2rem;
 }
 .colour-box {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   /* border: 0.5px solid rgba(128, 128, 128, 0.627); */
   border-radius: 50%;
 }
 .target-div {
-  padding: 6rem;
+  padding: 5rem;
   transition: all 0.3s ease;
 }
+
 .answer {
   font-size: 1.5rem;
   font-weight: 300;
   color: white;
   text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.target-div[data-result="correct"] {
+  animation: correctAnswer 1s ease-out;
 }
 
-.hidden {
-  display: none;
+.target-div[data-result="incorrect"] {
+  animation: incorrectAnswer 0.5s ease-in-out;
 }
 
-.correct {
-  color: black;
+.target-div[data-result="correct"] .answer {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+.target-div[data-result="incorrect"] .answer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .colourBoxDiv {
   margin-top: 2rem;
   display: grid;

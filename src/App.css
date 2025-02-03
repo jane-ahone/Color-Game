@@ -19,7 +19,7 @@ header {
 }
 
 main {
-  height: max-content;
+  height: calc(100vh - 1rem);
 }
 .next-btn {
   margin-top: 2rem;

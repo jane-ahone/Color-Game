@@ -30,8 +30,6 @@ const DisplayColour = ({
       setCount((prev) => prev + 1);
     }
   };
-  console.log(round, roundLimit);
-  console.log(round <= roundLimit);
 
   return (
     <div
